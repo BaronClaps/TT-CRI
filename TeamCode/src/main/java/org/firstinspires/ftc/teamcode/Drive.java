@@ -35,7 +35,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="TTDriveCode", group="Linear Opmode")
-public class TTDriveCode extends LinearOpMode {
+public class Drive extends LinearOpMode {
 
     //---------------Declare Hardware Variables-----------------------//
 
@@ -160,7 +160,7 @@ public class TTDriveCode extends LinearOpMode {
                 armROT.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             }
-            
+
 
             //--------------Airplane---------------//
 
@@ -179,7 +179,7 @@ public class TTDriveCode extends LinearOpMode {
                 clawRight.setPosition(openRight);
                 clawLeft.setPosition(openLeft);
             }
-            
+
             //This actions closes both claws
             if(gamepad2.right_trigger > 0.5)
             {
@@ -219,7 +219,7 @@ public class TTDriveCode extends LinearOpMode {
                 clawRotate.setPosition(scoringClaw);
                 armRotatesPosition(660, 0.33);
             }
-            
+
             //This actions puts claw to ground position
             if(gamepad2.dpad_down)
             {
@@ -275,9 +275,9 @@ public class TTDriveCode extends LinearOpMode {
     }
 
     public void armRotatesPosition (int h, double H) {armROT.setTargetPosition(h); armROT.setPower(H); }
-    
+
     public void armExtendsPosition (int e, double E) {arm.setTargetPosition(e); arm.setPower(E); }
-    
+
     public void armRotates (int s) {
         armROT.setPower(0.333);
         armROT.setTargetPosition(armROT.getCurrentPosition() + 50 * s);
