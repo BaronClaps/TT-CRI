@@ -123,11 +123,11 @@ public class CloseBlue extends LinearOpMode {
         Deadline rateLimit = new Deadline(1, TimeUnit.SECONDS); //from huskylens example
         rateLimit.expire();
 
-        if (!huskyLens.knock()) {
+        /*if (!huskyLens.knock()) {
             telemetry.addData(">>", "Problem communicating with " + huskyLens.getDeviceName());
         } else {
             telemetry.addData(">>", "Press start to continue");
-        }//Checks if HuskyLens is talking to the Control Hub
+        }*/ //Checks if HuskyLens is talking to the Control Hub
         huskyLens.selectAlgorithm(HuskyLens.Algorithm.COLOR_RECOGNITION);//Can change to other algorithms
 
 
@@ -143,7 +143,7 @@ public class CloseBlue extends LinearOpMode {
         Action yellowTrajectoryActionChosen = null;
         Action parkingTrajectoryActionChosen = null;
 
-        while (opModeIsActive()) {
+        
 
             if (!rateLimit.hasExpired()) {
                 continue;
@@ -179,6 +179,8 @@ public class CloseBlue extends LinearOpMode {
                 }
             }
         }
+   
+    while (opModeIsActive()) {
 
         Actions.runBlocking(
                 new SequentialAction(
