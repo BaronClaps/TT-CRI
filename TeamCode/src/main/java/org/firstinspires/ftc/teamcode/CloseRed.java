@@ -90,7 +90,7 @@ public class CloseRed extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(60, 12, Math.toRadians(180)));
+        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(60, 12, Math.toRadians(90)));
         ClawSubsystem.claw claw = new ClawSubsystem.claw(hardwareMap);
         ArmSubsystem.arm arm = new ArmSubsystem.arm(hardwareMap);
         ArmRotationSubsystem.armRotation armROT = new ArmRotationSubsystem.armRotation(hardwareMap);
@@ -111,7 +111,7 @@ public class CloseRed extends LinearOpMode {
         //This action drives to the first tape line
         purpleTrajectoryAction1 = drive.actionBuilder(drive.pose)
                 .waitSeconds(.5)
-                .strafeTo(new Vector2d(-26, 38.5))
+                .strafeTo(new Vector2d(26, 38.5))
                 .waitSeconds(.1)
                 .turn(-1 * PI / 2)
                 .waitSeconds(.1)
@@ -120,9 +120,9 @@ public class CloseRed extends LinearOpMode {
         //This action drives to the second tape line
         purpleTrajectoryAction2 = drive.actionBuilder(drive.pose)
                 .waitSeconds(.5)
-                .lineToX(-56.5)
+                .strafeTo(new Vector2d(56.5, 16))
                 .waitSeconds(.1)
-                .strafeTo(new Vector2d(-37.5, 16))
+                .strafeTo(new Vector2d(37.5, 16))
                 .waitSeconds(.1)
                 .build();
 
@@ -156,14 +156,14 @@ public class CloseRed extends LinearOpMode {
                 .waitSeconds(.1)
                 .strafeTo(new Vector2d(43.5, 48))
                 .waitSeconds(.1)
-                .lineToY(55)
+                .strafeTo(new Vector2d(43.5,55))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to robot to the first parking zone
         parkingTrajectoryAction1 = drive.actionBuilder(drive.pose)
                 .waitSeconds(.1)
-                .lineToY(40)
+                .strafeTo(new Vector2d(36,40))
                 .waitSeconds(.1)
                 .strafeTo((new Vector2d(66, 54)))
                 .waitSeconds(.1)
@@ -172,7 +172,7 @@ public class CloseRed extends LinearOpMode {
         //This action drives to robot to the second parking zone
         parkingTrajectoryAction2 = drive.actionBuilder(drive.pose)
                 .waitSeconds(.1)
-                .lineToY(40)
+                .strafeTo(new Vector2d(36,40))
                 .waitSeconds(.1)
                 .strafeTo((new Vector2d(60.5, 50)))
                 .waitSeconds(.1)
@@ -181,7 +181,7 @@ public class CloseRed extends LinearOpMode {
         //This action drives to robot to the third parking zone
         parkingTrajectoryAction3 = drive.actionBuilder(drive.pose)
                 .waitSeconds(.1)
-                .lineToY(40)
+                .strafeTo(new Vector2d(36,40))
                 .waitSeconds(.1)
                 .strafeTo((new Vector2d(67.5, 50)))
                 .waitSeconds(.1)
@@ -222,7 +222,7 @@ public class CloseRed extends LinearOpMode {
                 telemetry.addData("location?", blocks[i].x);// this gives you just x
                 //TODO ensure your x values of the husky lens are appropriate to the desired areas
                 //----------------------------1----------------------------\\
-                if (blocks[i].x < 90 && blocks[i].id == 2) {
+                if (blocks[i].x < 90 && blocks[i].id == 1) {
                     Actions.runBlocking(
                             new SequentialAction(
                                     presets.startPos(),
@@ -240,7 +240,7 @@ public class CloseRed extends LinearOpMode {
 
 
                 //----------------------------2----------------------------\\
-                if (blocks[i].x > 90 && blocks[i].x < 180 && blocks[i].id == 2) {
+                if (blocks[i].x > 90 && blocks[i].x < 180 && blocks[i].id == 1) {
                     Actions.runBlocking(
                             new SequentialAction(
                                     presets.startPos(),
@@ -258,7 +258,7 @@ public class CloseRed extends LinearOpMode {
 
 
                 //----------------------------3---------------------------\\
-                if (blocks[i].x > 180 && blocks[i].id == 2) {
+                if (blocks[i].x > 180 && blocks[i].id == 1) {
                     Actions.runBlocking(
                             new SequentialAction(
                                     presets.startPos(),
