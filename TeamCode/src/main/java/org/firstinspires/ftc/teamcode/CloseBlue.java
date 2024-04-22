@@ -264,12 +264,12 @@ public class CloseBlue extends LinearOpMode{
                   Actions.runBlocking(
                     new SequentialAction(
                             presets.startPos(),
-                            purpleTrajectoryAction1,
+                            purpleTrajectoryAction3,
                             claw.openRClaw(),
                             presets.scoringPos(),
-                            yellowTrajectoryAction1,
+                            yellowTrajectoryAction3,
                             claw.openLClaw(),
-                            parkingTrajectoryAction1,
+                            parkingTrajectoryAction3,
                             presets.groundPos()
                     )
                   );
