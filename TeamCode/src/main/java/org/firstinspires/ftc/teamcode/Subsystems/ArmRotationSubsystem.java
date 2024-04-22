@@ -19,14 +19,14 @@ public class ArmRotationSubsystem {
             armROT.setDirection(DcMotorSimple.Direction.FORWARD);
         }
         
-        //------------------------------Scoring Position------------------------------//
+        //------------------------------Ground Position------------------------------//
         
         public class armRotationGround implements Action {
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                armROT.setTargetPosition(75);
+                armROT.setTargetPosition(0);
                 armROT.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                armROT.setPower(0.4);
+                armROT.setPower(0.125);
                 return false;
             } 
         }
@@ -35,7 +35,7 @@ public class ArmRotationSubsystem {
             return new armRotationGround();
         }
 
-        //------------------------------Ground Position------------------------------//
+        //------------------------------Scoring Position------------------------------//
         
         public class armRotationScoring implements Action {
 
