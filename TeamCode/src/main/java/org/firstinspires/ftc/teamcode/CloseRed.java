@@ -84,115 +84,114 @@ import java.util.concurrent.TimeUnit;
 
 @Autonomous(name = "CloseRed", group = "Autonomous")
 
-public class CloseRed extends LinearOpMode{
+public class CloseRed extends LinearOpMode {
 
     private HuskyLens huskyLens;
 
-    @Override public void runOpMode() {
-      MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(60,12, Math.toRadians(180)));
-      ClawSubsystem.claw claw = new ClawSubsystem.claw(hardwareMap);
-      ArmSubsystem.arm arm = new ArmSubsystem.arm(hardwareMap);
-      ArmRotationSubsystem.armRotation armROT = new ArmRotationSubsystem.armRotation(hardwareMap);
-      PresetSubsystem.presets presets = new PresetSubsystem.presets(hardwareMap);
-      
-      huskyLens = hardwareMap.get(HuskyLens.class, "huskylens");
-        
-      Action purpleTrajectoryAction1;
-      Action purpleTrajectoryAction2;
-      Action purpleTrajectoryAction3;
-      Action yellowTrajectoryAction1;
-      Action yellowTrajectoryAction2;
-      Action yellowTrajectoryAction3;
-      Action parkingTrajectoryAction1;
-      Action parkingTrajectoryAction2;
-      Action parkingTrajectoryAction3;
+    @Override
+    public void runOpMode() {
+        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(60, 12, Math.toRadians(180)));
+        ClawSubsystem.claw claw = new ClawSubsystem.claw(hardwareMap);
+        ArmSubsystem.arm arm = new ArmSubsystem.arm(hardwareMap);
+        ArmRotationSubsystem.armRotation armROT = new ArmRotationSubsystem.armRotation(hardwareMap);
+        PresetSubsystem.presets presets = new PresetSubsystem.presets(hardwareMap);
 
-      //This action drives to the first tape line
-      purpleTrajectoryAction1 = drive.actionBuilder(drive.pose)
-              .waitSeconds(.5)
-              .strafeTo(new Vector2d(-26, 38.5))
-              .waitSeconds(.1)
-              .turn(-1*PI/2)
-              .waitSeconds(.1)
-              .build();
+        huskyLens = hardwareMap.get(HuskyLens.class, "huskylens");
 
-      //This action drives to the second tape line
-      purpleTrajectoryAction2 = drive.actionBuilder(drive.pose)
-              .waitSeconds(.5)
-              .lineToX(-56.5)
-              .waitSeconds(.1)
-              .strafeTo(new Vector2d(-37.5, 16))
-              .waitSeconds(.1)
-              .build();
+        Action purpleTrajectoryAction1;
+        Action purpleTrajectoryAction2;
+        Action purpleTrajectoryAction3;
+        Action yellowTrajectoryAction1;
+        Action yellowTrajectoryAction2;
+        Action yellowTrajectoryAction3;
+        Action parkingTrajectoryAction1;
+        Action parkingTrajectoryAction2;
+        Action parkingTrajectoryAction3;
 
-      //This action drives to the third tape line
-      purpleTrajectoryAction3 = drive.actionBuilder(drive.pose)
-              .waitSeconds(.5)
-              .strafeTo(new Vector2d(29.5, 40))
-              .waitSeconds(.1)
-              .turn(PI / 2)
-              .waitSeconds(.1)
-              .build();
+        //This action drives to the first tape line
+        purpleTrajectoryAction1 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.5)
+                .strafeTo(new Vector2d(-26, 38.5))
+                .waitSeconds(.1)
+                .turn(-1 * PI / 2)
+                .waitSeconds(.1)
+                .build();
 
-      //This action drives to the first backdrop section
-      yellowTrajectoryAction1 = drive.actionBuilder(drive.pose)
-              .waitSeconds(.1)
-              .strafeTo(new Vector2d(22.5, 48))
-              .waitSeconds(.1)
-              .build();
+        //This action drives to the second tape line
+        purpleTrajectoryAction2 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.5)
+                .lineToX(-56.5)
+                .waitSeconds(.1)
+                .strafeTo(new Vector2d(-37.5, 16))
+                .waitSeconds(.1)
+                .build();
 
-      //This action drives to the second backdrop section
-      yellowTrajectoryAction2 = drive.actionBuilder(drive.pose)
-              .waitSeconds(.1)
-              .turn(PI / 2)
-              .waitSeconds(.1)
-              .strafeTo(new Vector2d(27, 48))
-              .waitSeconds(.1)
-              .build();
+        //This action drives to the third tape line
+        purpleTrajectoryAction3 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.5)
+                .strafeTo(new Vector2d(29.5, 40))
+                .waitSeconds(.1)
+                .turn(PI / 2)
+                .waitSeconds(.1)
+                .build();
 
-      //This action drives to the third backdrop section
-      yellowTrajectoryAction3 = drive.actionBuilder(drive.pose)
-              .waitSeconds(.1)
-              .strafeTo(new Vector2d(43.5, 48))
-              .waitSeconds(.1)
-              .lineToY(55)
-              .waitSeconds(.1)
-              .build();
+        //This action drives to the first backdrop section
+        yellowTrajectoryAction1 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.1)
+                .strafeTo(new Vector2d(22.5, 48))
+                .waitSeconds(.1)
+                .build();
 
-      //This action drives to robot to the first parking zone
-      parkingTrajectoryAction1 = drive.actionBuilder(drive.pose)
-              .waitSeconds(.1)
-              .lineToY(40)
-              .waitSeconds(.1)
-              .strafeTo((new Vector2d(66, 54)))
-              .waitSeconds(.1)
-              .build();
+        //This action drives to the second backdrop section
+        yellowTrajectoryAction2 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.1)
+                .turn(PI / 2)
+                .waitSeconds(.1)
+                .strafeTo(new Vector2d(27, 48))
+                .waitSeconds(.1)
+                .build();
 
-      //This action drives to robot to the second parking zone
-      parkingTrajectoryAction2 = drive.actionBuilder(drive.pose)
-              .waitSeconds(.1)
-              .lineToY(40)
-              .waitSeconds(.1)
-              .strafeTo((new Vector2d(60.5, 50)))
-              .waitSeconds(.1)
-              .build();
+        //This action drives to the third backdrop section
+        yellowTrajectoryAction3 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.1)
+                .strafeTo(new Vector2d(43.5, 48))
+                .waitSeconds(.1)
+                .lineToY(55)
+                .waitSeconds(.1)
+                .build();
 
-      //This action drives to robot to the third parking zone
-      parkingTrajectoryAction3 = drive.actionBuilder(drive.pose)
-              .waitSeconds(.1)
-              .lineToY(40)
-              .waitSeconds(.1)
-              .strafeTo((new Vector2d(67.5, 50)))
-              .waitSeconds(.1)
-              .build();
+        //This action drives to robot to the first parking zone
+        parkingTrajectoryAction1 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.1)
+                .lineToY(40)
+                .waitSeconds(.1)
+                .strafeTo((new Vector2d(66, 54)))
+                .waitSeconds(.1)
+                .build();
+
+        //This action drives to robot to the second parking zone
+        parkingTrajectoryAction2 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.1)
+                .lineToY(40)
+                .waitSeconds(.1)
+                .strafeTo((new Vector2d(60.5, 50)))
+                .waitSeconds(.1)
+                .build();
+
+        //This action drives to robot to the third parking zone
+        parkingTrajectoryAction3 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.1)
+                .lineToY(40)
+                .waitSeconds(.1)
+                .strafeTo((new Vector2d(67.5, 50)))
+                .waitSeconds(.1)
+                .build();
 
 
         Actions.runBlocking(claw.closeClaws());
+        Actions.runBlocking(presets.resetEncoders());
 
-        gearROT.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        Deadline rateLimit = new Deadline(READ_PERIOD, TimeUnit.SECONDS); //from huskylens example
+        Deadline rateLimit = new Deadline(1, TimeUnit.SECONDS); //from huskylens example
         rateLimit.expire();
 
         if (!huskyLens.knock()) {
@@ -224,60 +223,60 @@ public class CloseRed extends LinearOpMode{
                 //TODO ensure your x values of the husky lens are appropriate to the desired areas
                 //----------------------------1----------------------------\\
                 if (blocks[i].x < 90 && blocks[i].id == 2) {
-                  Actions.runBlocking(
-                          new SequentialAction(
-                                  presets.startPos(),
-                                  purpleTrajectoryAction1,
-                                  claw.openRClaw(),
-                                  presets.scoringPos(),
-                                  yellowTrajectoryAction1,
-                                  claw.openLClaw(),
-                                  parkingTrajectoryAction1,
-                                  presets.groundPos()
-                          )
-                  );
-                  sleep(400000);
+                    Actions.runBlocking(
+                            new SequentialAction(
+                                    presets.startPos(),
+                                    purpleTrajectoryAction1,
+                                    claw.openRClaw(),
+                                    presets.scoringPos(),
+                                    yellowTrajectoryAction1,
+                                    claw.openLClaw(),
+                                    parkingTrajectoryAction1,
+                                    presets.groundPos()
+                            )
+                    );
+                    sleep(400000);
                 }
 
 
                 //----------------------------2----------------------------\\
                 if (blocks[i].x > 90 && blocks[i].x < 180 && blocks[i].id == 2) {
-                  Actions.runBlocking(
-                    new SequentialAction(
-                            presets.startPos(),
-                            purpleTrajectoryAction2,
-                            claw.openRClaw(),
-                            presets.scoringPos(),
-                            yellowTrajectoryAction2,
-                            claw.openLClaw(),
-                            parkingTrajectoryAction2,
-                            presets.groundPos()
-                    )
-                  );
-                  sleep(400000);
+                    Actions.runBlocking(
+                            new SequentialAction(
+                                    presets.startPos(),
+                                    purpleTrajectoryAction2,
+                                    claw.openRClaw(),
+                                    presets.scoringPos(),
+                                    yellowTrajectoryAction2,
+                                    claw.openLClaw(),
+                                    parkingTrajectoryAction2,
+                                    presets.groundPos()
+                            )
+                    );
+                    sleep(400000);
                 }
 
 
                 //----------------------------3---------------------------\\
                 if (blocks[i].x > 180 && blocks[i].id == 2) {
-                  Actions.runBlocking(
-                    new SequentialAction(
-                            presets.startPos(),
-                            purpleTrajectoryAction3,
-                            claw.openRClaw(),
-                            presets.scoringPos(),
-                            yellowTrajectoryAction3,
-                            claw.openLClaw(),
-                            parkingTrajectoryAction3,
-                            presets.groundPos()
-                    )
-                  );
-                  sleep(400000);
+                    Actions.runBlocking(
+                            new SequentialAction(
+                                    presets.startPos(),
+                                    purpleTrajectoryAction3,
+                                    claw.openRClaw(),
+                                    presets.scoringPos(),
+                                    yellowTrajectoryAction3,
+                                    claw.openLClaw(),
+                                    parkingTrajectoryAction3,
+                                    presets.groundPos()
+                            )
+                    );
+                    sleep(400000);
                 }
-
 
 
             }
         }
     }
+}
 

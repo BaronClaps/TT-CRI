@@ -91,6 +91,20 @@ public class PresetSubsystem {
             return new scoringPos();
         }
 
+        public class resetEncoders implements Action {
+
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                armROT.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                return false;
+            }
+        }
+
+        public Action resetEncoders() {
+            return new resetEncoders();
+        }
+
 
 
 
