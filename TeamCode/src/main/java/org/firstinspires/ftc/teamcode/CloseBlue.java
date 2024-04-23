@@ -90,7 +90,7 @@ public class CloseBlue extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(-60, 12, 0));
+        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(12, 60, Math.toRadians(-90)));
         ClawSubsystem.claw claw = new ClawSubsystem.claw(hardwareMap);
         ArmSubsystem.arm arm = new ArmSubsystem.arm(hardwareMap);
         ArmRotationSubsystem.armRotation armROT = new ArmRotationSubsystem.armRotation(hardwareMap);
@@ -109,73 +109,69 @@ public class CloseBlue extends LinearOpMode {
         //This action drives to the first tape line
         purpleTrajectoryAction1 = drive.actionBuilder(drive.pose)
                 .waitSeconds(.5)
-                .strafeTo(new Vector2d(-26, 38.5))
-                .waitSeconds(.1)
-                .turn(-1 * PI / 2)
+                .splineTo(new Vector2d(31,35), Math.toRadians(180))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to the second tape line
         purpleTrajectoryAction2 = drive.actionBuilder(drive.pose)
                 .waitSeconds(.5)
-                .lineToX(-56.5)
-                .waitSeconds(.1)
-                .strafeTo(new Vector2d(-37.5, 16))
+                .strafeTo(new Vector2d(12, 32))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to the third tape line
         purpleTrajectoryAction3 = drive.actionBuilder(drive.pose)
-                .waitSeconds(0.5)
-                .splineTo(new Vector2d(-31.5, 12), -1 * Math.PI / 2)
+                .waitSeconds(.5)
+                .splineTo(new Vector2d(8, 35), Math.toRadians(180))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to the first backdrop section
         yellowTrajectoryAction1 = drive.actionBuilder(drive.pose)
-                .strafeTo(new Vector2d(-45, 48))
+                .strafeTo(new Vector2d(45, 42))
                 .waitSeconds(.1)
-                .lineToY(57)
+                .strafeTo(new Vector2d(50,42))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to the second backdrop section
         yellowTrajectoryAction2 = drive.actionBuilder(drive.pose)
-                .lineToX(-40)
+                .strafeTo(new Vector2d(12,40))
                 .waitSeconds(.1)
                 .turn(-1 * PI / 2)
                 .waitSeconds(.1)
-                .strafeTo(new Vector2d(-29.5, 48))
+                .strafeTo(new Vector2d(50, 36))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to the third backdrop section
         yellowTrajectoryAction3 = drive.actionBuilder(drive.pose)
-                .strafeTo(new Vector2d(-22, 48))
+                .strafeTo(new Vector2d(50, 29.5))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to robot to the third parking zone
         parkingTrajectoryAction1 = drive.actionBuilder(drive.pose)
-                .lineToY(43)
+                .strafeTo(new Vector2d( 42,35))
                 .waitSeconds(.1)
-                .strafeTo((new Vector2d(-67.5, 50)))
+                .strafeTo((new Vector2d(50,10)))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to robot to the third parking zone
         parkingTrajectoryAction2 = drive.actionBuilder(drive.pose)
-                .lineToY(43)
+                .strafeTo(new Vector2d( 42,35))
                 .waitSeconds(.1)
-                .strafeTo((new Vector2d(-60.5, 50)))
+                .strafeTo((new Vector2d(50,10)))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to robot to the third parking zone
         parkingTrajectoryAction3 = drive.actionBuilder(drive.pose)
-                .lineToY(43)
+                .strafeTo(new Vector2d( 42,35))
                 .waitSeconds(.1)
-                .strafeTo((new Vector2d(-66, 54)))
+                .strafeTo((new Vector2d(50,10)))
                 .waitSeconds(.1)
                 .build();
 
