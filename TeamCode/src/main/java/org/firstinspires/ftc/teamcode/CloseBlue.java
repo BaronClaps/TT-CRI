@@ -109,26 +109,31 @@ public class CloseBlue extends LinearOpMode {
         //This action drives to the first tape line
         purpleTrajectoryAction1 = drive.actionBuilder(drive.pose)
                 .waitSeconds(.5)
-                .splineTo(new Vector2d(31,35), Math.toRadians(180))
+                .strafeTo(new Vector2d(12,55))
+                .waitSeconds(.1)
+                .splineTo(new Vector2d(8,35), Math.toRadians(180))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to the second tape line
         purpleTrajectoryAction2 = drive.actionBuilder(drive.pose)
-                .waitSeconds(.5)
-                .strafeTo(new Vector2d(12, 32))
+                .waitSeconds(1)
+                .strafeTo(new Vector2d(12, 33))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to the third tape line
         purpleTrajectoryAction3 = drive.actionBuilder(drive.pose)
                 .waitSeconds(.5)
-                .splineTo(new Vector2d(8, 35), Math.toRadians(180))
+                .strafeTo(new Vector2d(12,55))
+                .waitSeconds(.1)
+                .splineTo(new Vector2d(31,35), Math.toRadians(180))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to the first backdrop section
         yellowTrajectoryAction1 = drive.actionBuilder(drive.pose)
+                .waitSeconds(1)
                 .strafeTo(new Vector2d(45, 42))
                 .waitSeconds(.1)
                 .strafeTo(new Vector2d(50,42))
@@ -137,6 +142,7 @@ public class CloseBlue extends LinearOpMode {
 
         //This action drives to the second backdrop section
         yellowTrajectoryAction2 = drive.actionBuilder(drive.pose)
+                .waitSeconds(1)
                 .strafeTo(new Vector2d(12,40))
                 .waitSeconds(.1)
                 .turn(-1 * PI / 2)
@@ -147,12 +153,14 @@ public class CloseBlue extends LinearOpMode {
 
         //This action drives to the third backdrop section
         yellowTrajectoryAction3 = drive.actionBuilder(drive.pose)
+                .waitSeconds(1)
                 .strafeTo(new Vector2d(50, 29.5))
                 .waitSeconds(.1)
                 .build();
 
         //This action drives to robot to the third parking zone
         parkingTrajectoryAction1 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.5)
                 .strafeTo(new Vector2d( 42,35))
                 .waitSeconds(.1)
                 .strafeTo((new Vector2d(50,10)))
@@ -161,6 +169,7 @@ public class CloseBlue extends LinearOpMode {
 
         //This action drives to robot to the third parking zone
         parkingTrajectoryAction2 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.5)
                 .strafeTo(new Vector2d( 42,35))
                 .waitSeconds(.1)
                 .strafeTo((new Vector2d(50,10)))
@@ -169,6 +178,7 @@ public class CloseBlue extends LinearOpMode {
 
         //This action drives to robot to the third parking zone
         parkingTrajectoryAction3 = drive.actionBuilder(drive.pose)
+                .waitSeconds(.5)
                 .strafeTo(new Vector2d( 42,35))
                 .waitSeconds(.1)
                 .strafeTo((new Vector2d(50,10)))
